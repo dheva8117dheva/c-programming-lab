@@ -1,0 +1,160 @@
+=====================================================================
+Program 1 (Simple ATM Machine Simulation) 
+=====================================================================
+#include <stdio.h>
+
+int main() {
+    int choice;
+    float balance = 1000.00, amount;
+
+    while(1) {
+        printf("\n=== ATM MENU ===\n");
+        printf("1. View Balance\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Your Balance: ₹%.2f\n", balance);
+                break;
+            case 2:
+                printf("Enter amount to deposit: ₹");
+                scanf("%f", &amount);
+                balance += amount;
+                printf("Deposit Successful!\n");  
+                break;
+            case 3:
+                printf("Enter amount to withdraw: ₹");
+                scanf("%f", &amount);
+                if(amount <= balance) {
+                    balance -= amount;
+                    printf("Withdrawal Successful!\n");
+                } else {
+                    printf("Insufficient Balance!\n");
+                }
+                break;
+            case 4:
+                printf("Thank you! Visit Again.\n");
+                return 0; // ends the program
+            default:
+                printf("Invalid Choice!\n");
+        }
+    }
+
+    return 0;
+}
+=====================================================================
+Program 2 (Pattern Generator)
+=====================================================================
+
+
+#include <stdio.h>
+
+int main() {
+    int i, j, rows;
+    printf("Enter number of rows: ");
+    scanf("%d", &rows);
+
+    for(i = 1; i <= rows; i++) {
+        for(j = 1; j <= i; j++) {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+=====================================================================
+Program 3 (Grade Calculator)
+=====================================================================
+
+#include <stdio.h>
+
+int main() {
+    int marks[5], i, total = 0;
+    float average;
+    char grade;
+
+    printf("Enter marks of 5 subjects (out of 100):\n");
+
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d: ", i + 1);
+        scanf("%d", &marks[i]);
+
+        // Validation
+        if(marks[i] < 0 || marks[i] > 100) {
+            printf("Invalid mark entered! Please enter marks between 0 and 100.\n");
+            return 1;
+        }
+
+        total += marks[i];
+    }
+
+    average = total / 5.0;
+
+    // Grade calculation
+    if(average >= 100)
+        grade = 'A';
+    else if(average >= 75)
+        grade = 'B';
+    else if(average >= 50)
+        grade = 'C';
+    else if(average >= 35 )
+        grade = 'D';
+    else
+        grade = 'F';
+
+    printf("\nTotal Marks: %d\n", total);
+    printf("Average: %.2f\n", average);
+    printf("Grade: %c\n", grade);
+
+    return 0;
+}
+=====================================================================
+Program 4   ( Swapping with Pointers )
+=====================================================================
+#include <stdio.h>
+
+// Function for call by value
+void swapValue(int a, int b) {
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swapValue - a: %d, b: %d\n", a, b);
+}
+
+// Function for call by reference
+void swapRef(int *a, int *b) {
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    // Swaps actual variables using pointers
+}
+
+int main() {
+    int x, y;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &x, &y);
+
+    printf("\n--- Before Swap ---\n");
+    printf("x: %d, y: %d\n", x, y);
+
+    // Call-by-value: values won't actually swap in main
+    swapValue(x, y);
+    printf("After swapValue (call-by-value): x: %d, y: %d\n", x, y);
+
+    // Call-by-reference: values will swap in main
+    swapRef(&x, &y);
+    printf("After swapRef (call-by-reference): x: %d, y: %d\n", x, y);
+
+    return 0;
+}
+
+
+
